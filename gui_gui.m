@@ -22,7 +22,7 @@ function varargout = gui_gui(varargin)
 
 % Edit the above text to modify the response to help gui_gui
 
-% Last Modified by GUIDE v2.5 25-Oct-2019 14:40:22
+% Last Modified by GUIDE v2.5 26-Oct-2019 14:02:42
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -117,8 +117,8 @@ clear hangshu;clear lieshu;clear hang;clear lie;
 clear Filename;clear Pathname;clear str;
 clear CloumnName;clear dataExcel;
 
-table_data = get(handles.uitable1,'Data');
-data_cell = cell2mat(table_data);    %转换元胞数组
+table_data = get(handles.uitable1,'Data');  %table_data含两个相同的元胞数组（2×1 cell 数组）
+data_cell = cell2mat(table_data(1,1));    %转换元胞数组
 filter = {'*.xlsx';'*.xls';'*.txt';'*.docx';'*.*'};
 [Filename,Pathname] = uiputfile(filter,'另存为','data.xlsx');  %创建文件保存对话框
 if (Filename==0 & Pathname==0)
@@ -126,8 +126,8 @@ if (Filename==0 & Pathname==0)
 else
     str=[Pathname Filename];
     %获取表格的列名
-    CloumnName=get(handles.uitable1,'ColumnName')                           
-    CloumnName=CloumnName{2,1}
+    CloumnName=get(handles.uitable1,'ColumnName') ;                          
+    CloumnName=CloumnName{2,1};
     
     dataExcel=cell(size(data_cell,1)+1,size(data_cell,2));
     dataExcel(1,:)=CloumnName;                                            %获取表格列名；
@@ -317,3 +317,10 @@ function axes3_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: place code in OpeningFcn to populate axes3
+
+
+% --- Executes during object creation, after setting all properties.
+function text11_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to text11 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
