@@ -114,6 +114,8 @@ function pushbutton1_2_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 clear table_data;clear data_cell;clear filter;
 clear hangshu;clear lieshu;clear hang;clear lie;
+clear Filename;clear Pathname;clear str;
+clear CloumnName;clear dataExcel;
 
 table_data = get(handles.uitable1,'Data');
 data_cell = cell2mat(table_data);    %转换元胞数组
@@ -260,6 +262,27 @@ function pushbutton13_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton13 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+clear table_data1;clear table_data2;clear table_data3;clear table_data4;
+clear data_cell;clear data_cel2;clear data_cel3;clear data_cel4;
+clear hang1;clear lie1;clear hang2;clear lie2;
+clear hang3;clear lie3;clear hang4;clear lie4;
+
+table_data1 = get(handles.uitable1,'Data');
+
+data_cell = cell2mat(table_data1); 
+
+for hang1=1:size(data_cell,1)
+    fen1 = data_cell(hang1+1,1) - data_cell(hang1,1);
+    fenshu = fen1/10; 
+    %井斜角
+    lie_fen1 = (data_cell(hang1+1,2) - data_cell(hang1,2))/fenshu;
+    for i = data_cell(hang1,1):10:data_cell(hang1+1,1)
+    put(handles.uitable13(:,1),'Data');
+    end
+    for i = data_cell(hang1,2):lie_fen1:data_cell(hang1+1,2)
+    put(handles.uitable13(:,2),'Data');  
+    end
+end
 
 
 % --- Executes during object creation, after setting all properties.
